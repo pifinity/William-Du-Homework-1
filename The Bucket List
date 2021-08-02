@@ -1,0 +1,43 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class blist {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader("blist.in"));
+
+        int N = Integer.parseInt(bf.readLine());
+
+        int[] time = new int[1000];
+
+        for (int i =0; i<N; i++){
+            StringTokenizer st = new StringTokenizer(bf.readLine());
+
+
+
+            int start = Integer.parseInt(st.nextToken());
+
+            int end = Integer.parseInt(st.nextToken());
+
+            int buckets = Integer.parseInt(st.nextToken());
+
+            for (int x = start-1; x<end; x++){
+                time[x]+=buckets;
+            }
+
+        }
+
+        int solution = 0;
+
+        for (int i =0; i<1000; i++){
+            solution = Math.max(solution, time[i]);
+        }
+
+        PrintWriter out = new PrintWriter("blist.out");
+        out.println(solution);
+        out.close();
+
+    }
+}
