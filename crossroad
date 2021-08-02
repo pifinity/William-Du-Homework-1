@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+
+public class crossroad {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader("crossroad.in"));
+
+        PrintWriter out = new PrintWriter("crossroad.out");
+
+        int N = Integer.parseInt(bf.readLine());
+
+        int[] cows = new int[11];
+        int crosses = 0;
+
+        Arrays.fill(cows, -1);
+
+        for (int i =0; i<N; i++){
+            StringTokenizer st = new StringTokenizer(bf.readLine());
+
+            int cowID = Integer.parseInt(st.nextToken());
+            int road = Integer.parseInt(st.nextToken());
+
+            if (cows[cowID]==-1){
+                cows[cowID] = road;
+            }
+
+            if (Math.abs(cows[cowID]-road)==1){
+                cows[cowID] = road;
+                crosses++;
+            }
+        }
+
+        out.println(crosses);
+        out.close();
+
+    }
+}
