@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+
+public class lifeguards {
+
+
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader("lifeguards.in"));
+
+        PrintWriter out = new PrintWriter("lifeguards.out");
+
+        int N = Integer.parseInt(br.readLine());
+
+        int[] arr = new int[1001];
+        int[] starts = new int[N];
+        int[] ends = new int[N];
+
+        for (int i =0; i<N; i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+
+            starts[i] = start;
+            ends[i] = end;
+
+            for (int ii = start+1; ii<=end; ii++){
+                arr[ii]++;
+            }
+        }
+
+        int maxTime = 0;
+        for (int i =0; i<arr.length; i++){
+            if (arr[i]>0){
+                maxTime++;
+            }
+        }
+
+        int solution = 0;
+
+        for (int i =0; i<N; i++){
+
+            int temp = maxTime;
+
+            for (int ii = starts[i]+1; ii<=ends[i]; ii++){
+                if (arr[ii]==1){
+                    temp--;
+                }
+            }
+
+            solution = Math.max(solution, temp);
+        }
+
+   //     System.out.println(Arrays.toString(arr));
+        out.println(solution);
+        out.close();
+    }
+}
